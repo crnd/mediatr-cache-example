@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Purkki.MediatorCacheExample.Application\Purkki.MediatorCacheExample.Application.csproj" />
   </ItemGroup>
 
