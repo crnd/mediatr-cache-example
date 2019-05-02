@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Purkki.MediatorCacheExample
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Purkki.MediatorCacheExample.Application", "Purkki.MediatorCacheExample.Application\Purkki.MediatorCacheExample.Application.csproj", "{20BC0B69-5492-423D-8A2E-05B0A66A240C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Purkki.MediatorCacheExample.API", "Purkki.MediatorCacheExample.API\Purkki.MediatorCacheExample.API.csproj", "{C09C0C95-7C5D-4BB0-B131-C97AEACD8B96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{20BC0B69-5492-423D-8A2E-05B0A66A240C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20BC0B69-5492-423D-8A2E-05B0A66A240C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20BC0B69-5492-423D-8A2E-05B0A66A240C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C09C0C95-7C5D-4BB0-B131-C97AEACD8B96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C09C0C95-7C5D-4BB0-B131-C97AEACD8B96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C09C0C95-7C5D-4BB0-B131-C97AEACD8B96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C09C0C95-7C5D-4BB0-B131-C97AEACD8B96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
