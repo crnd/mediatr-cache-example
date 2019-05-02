@@ -4,5 +4,5 @@ using System.Collections.Generic;
 
 namespace Purkki.MediatorCacheExample.Application.Cars.Queries.GetCars
 {
-	public class GetCarsQuery : IQuery<IEnumerable<Car>> { }
+	public class GetCarsQuery : ICacheableQuery<IEnumerable<Car>> { }
 }
