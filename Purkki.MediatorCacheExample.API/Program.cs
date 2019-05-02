@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore;
+﻿using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace Purkki.MediatorCacheExample.API
@@ -12,6 +13,7 @@ namespace Purkki.MediatorCacheExample.API
 
 		public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 			WebHost.CreateDefaultBuilder(args)
+				.ConfigureServices(s => s.AddAutofac())
 				.UseStartup<Startup>();
 	}
 }

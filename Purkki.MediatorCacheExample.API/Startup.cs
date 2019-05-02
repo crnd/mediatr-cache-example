@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Autofac;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,11 @@ namespace Purkki.MediatorCacheExample.API
 			services.AddMediatR(pipelineAssembly);
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+		}
+
+		public void ConfigureContainer(ContainerBuilder builder)
+		{
+			builder.RegisterModule(new AutofacModule());
 		}
 
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
