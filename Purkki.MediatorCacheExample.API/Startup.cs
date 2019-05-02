@@ -28,6 +28,8 @@ namespace Purkki.MediatorCacheExample.API
 
 			services.AddDbContext<ExampleContext>(o => o.UseInMemoryDatabase(databaseName: "CacheExample"));
 
+			services.AddMemoryCache();
+
 			services
 				.AddMvc(o => o.Filters.Add(typeof(CustomExceptionFilter)))
 				.SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
