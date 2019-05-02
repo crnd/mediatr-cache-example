@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using MediatR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Purkki.MediatorCacheExample.Application.Infrastructure;
 
 namespace Purkki.MediatorCacheExample.API
 {
@@ -17,6 +19,9 @@ namespace Purkki.MediatorCacheExample.API
 
 		public void ConfigureServices(IServiceCollection services)
 		{
+			var pipelineAssembly = typeof(IQuery<>).Assembly;
+			services.AddMediatR(pipelineAssembly);
+
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 		}
 
