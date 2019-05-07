@@ -14,15 +14,15 @@ namespace Purkki.MediatorCacheExample.API.Controllers
 		private const string GetCarRouteName = "GetCar";
 
 		[HttpGet]
-		public async Task<ActionResult<IEnumerable<Car>>> Get()
+		public async Task<ActionResult<List<Car>>> Get()
 		{
-			return Ok(await Mediator.Send(new GetCarsQuery()));
+			return await Mediator.Send(new GetCarsQuery());
 		}
 
 		[HttpGet("{id}", Name = GetCarRouteName)]
 		public async Task<ActionResult<Car>> Get(int id)
 		{
-			return Ok(await Mediator.Send(new GetCarQuery { Id = id }));
+			return await Mediator.Send(new GetCarQuery { Id = id });
 		}
 
 		[HttpPost]
