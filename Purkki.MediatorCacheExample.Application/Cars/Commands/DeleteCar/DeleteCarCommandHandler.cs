@@ -1,19 +1,22 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Purkki.MediatorCacheExample.Application.Cars.Notifications;
 using Purkki.MediatorCacheExample.Application.Infrastructure.Exceptions;
 using Purkki.MediatorCacheExample.Database;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Purkki.MediatorCacheExample.Application.Cars.Commands.DeleteCar
 {
 	public class DeleteCarCommandHandler : IRequestHandler<DeleteCarCommand>
 	{
 		private readonly ExampleContext _context;
+		private readonly IMediator _mediator;
 
-		public DeleteCarCommandHandler(ExampleContext context)
+		public DeleteCarCommandHandler(ExampleContext context, IMediator mediator)
 		{
 			_context = context;
+			_mediator = mediator;
 		}
 
 		public async Task<Unit> Handle(DeleteCarCommand request, CancellationToken cancellationToken)
@@ -26,6 +29,8 @@ namespace Purkki.MediatorCacheExample.Application.Cars.Commands.DeleteCar
 
 			_context.Cars.Remove(car);
 			await _context.SaveChangesAsync(cancellationToken);
+
+			await _mediator.Publish(new ClearCarsCacheEntryNotification(), cancellationToken);
 
 			return Unit.Value;
 		}
