@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,7 +25,7 @@ namespace Purkki.MediatorCacheExample.Application.Infrastructure.Behaviors
 			}
 
 			var response = await next();
-			_cache.Set(cacheKey, response, TimeSpan.FromMinutes(1));
+			_cache.Set(cacheKey, response);
 			return response;
 		}
 	}
