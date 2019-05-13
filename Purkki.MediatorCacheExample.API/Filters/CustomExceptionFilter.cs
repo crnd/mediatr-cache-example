@@ -13,7 +13,7 @@ namespace Purkki.MediatorCacheExample.API.Filters
 			HttpStatusCode code;
 			switch (context.Exception)
 			{
-				case NotFoundException ex:
+				case NotFoundException _:
 					code = HttpStatusCode.NotFound;
 					break;
 				default:
