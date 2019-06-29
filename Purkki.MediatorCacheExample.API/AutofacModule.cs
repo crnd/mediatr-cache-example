@@ -27,7 +27,7 @@ namespace Purkki.MediatorCacheExample.API
 				.InstancePerDependency();
 
 			builder
-				.RegisterAssemblyTypes(typeof(ICommand).Assembly)
+				.RegisterAssemblyTypes(typeof(ICommand<>).Assembly)
 				.AsImplementedInterfaces();
 		}
 	}
