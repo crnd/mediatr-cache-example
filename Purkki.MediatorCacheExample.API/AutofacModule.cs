@@ -27,6 +27,11 @@ namespace Purkki.MediatorCacheExample.API
 				.InstancePerDependency();
 
 			builder
+				.RegisterGeneric(typeof(CacheClearingBehavior<,>))
+				.As(typeof(IPipelineBehavior<,>))
+				.InstancePerDependency();
+
+			builder
 				.RegisterAssemblyTypes(typeof(ICommand<>).Assembly)
 				.AsImplementedInterfaces();
 		}
