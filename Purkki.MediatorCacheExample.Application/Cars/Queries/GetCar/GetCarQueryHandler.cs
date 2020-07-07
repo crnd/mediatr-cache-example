@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Purkki.MediatorCacheExample.Application.Infrastructure.Exceptions;
+using Purkki.MediatorCacheExample.Application.Cars.Exceptions;
 using Purkki.MediatorCacheExample.Database;
 using Purkki.MediatorCacheExample.Database.Entities;
 using System.Threading;
@@ -22,7 +22,7 @@ namespace Purkki.MediatorCacheExample.Application.Cars.Queries.GetCar
 			var car = await context.Cars.FirstOrDefaultAsync(c => c.Id == request.Id, cancellationToken);
 			if (car == null)
 			{
-				throw new NotFoundException(nameof(car), request.Id.ToString());
+				throw new CarNotFoundException(request.Id);
 			}
 
 			return car;

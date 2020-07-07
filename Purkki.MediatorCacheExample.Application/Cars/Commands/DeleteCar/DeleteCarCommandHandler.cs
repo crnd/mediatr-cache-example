@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Purkki.MediatorCacheExample.Application.Infrastructure.Exceptions;
+using Purkki.MediatorCacheExample.Application.Cars.Exceptions;
 using Purkki.MediatorCacheExample.Database;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,7 +21,7 @@ namespace Purkki.MediatorCacheExample.Application.Cars.Commands.DeleteCar
 			var car = await context.Cars.FirstOrDefaultAsync(c => c.Id == request.Id, cancellationToken);
 			if (car == null)
 			{
-				throw new NotFoundException(nameof(car), request.Id.ToString());
+				throw new CarNotFoundException(request.Id);
 			}
 
 			context.Cars.Remove(car);
