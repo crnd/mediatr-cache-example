@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,9 +23,7 @@ namespace Purkki.MediatorCacheExample.API
 
 			services.AddMemoryCache();
 
-			services
-				.AddMvc(o => o.Filters.Add(typeof(CustomExceptionFilter)))
-				.SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+			services.AddControllers(o => o.Filters.Add(typeof(CustomExceptionFilter)));
 		}
 
 		public void ConfigureContainer(ContainerBuilder builder)
@@ -36,7 +33,12 @@ namespace Purkki.MediatorCacheExample.API
 
 		public void Configure(IApplicationBuilder app)
 		{
-			app.UseMvc();
+			app.UseRouting();
+
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapControllers();
+			});
 		}
 	}
 }
