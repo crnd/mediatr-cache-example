@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Purkki.MediatorCacheExample.API.Controllers
 {
 	[ApiController]
-	[Route("api/[controller]")]
+	[Route("[controller]")]
 	public abstract class MediatorControllerBase : ControllerBase
 	{
 		private IMediator mediator;
