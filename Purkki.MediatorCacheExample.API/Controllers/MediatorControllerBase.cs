@@ -8,8 +8,8 @@ namespace Purkki.MediatorCacheExample.API.Controllers
 	[Route("api/[controller]")]
 	public abstract class MediatorControllerBase : ControllerBase
 	{
-		private IMediator _mediator;
+		private IMediator mediator;
 
-		protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
+		protected IMediator Mediator => mediator ??= HttpContext.RequestServices.GetService<IMediator>();
 	}
 }

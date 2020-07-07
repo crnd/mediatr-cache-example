@@ -10,16 +10,16 @@ namespace Purkki.MediatorCacheExample.Application.Cars.Queries.GetCars
 {
 	public class GetCarsQueryHandler : IRequestHandler<GetCarsQuery, List<Car>>
 	{
-		private readonly ExampleContext _context;
+		private readonly ExampleContext context;
 
 		public GetCarsQueryHandler(ExampleContext context)
 		{
-			_context = context;
+			this.context = context;
 		}
 
 		public async Task<List<Car>> Handle(GetCarsQuery request, CancellationToken cancellationToken)
 		{
-			return await _context.Cars.ToListAsync(cancellationToken);
+			return await context.Cars.ToListAsync(cancellationToken);
 		}
 	}
 }

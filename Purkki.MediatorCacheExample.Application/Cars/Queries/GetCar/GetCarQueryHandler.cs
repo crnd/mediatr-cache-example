@@ -10,16 +10,16 @@ namespace Purkki.MediatorCacheExample.Application.Cars.Queries.GetCar
 {
 	public class GetCarQueryHandler : IRequestHandler<GetCarQuery, Car>
 	{
-		private readonly ExampleContext _context;
+		private readonly ExampleContext context;
 
 		public GetCarQueryHandler(ExampleContext context)
 		{
-			_context = context;
+			this.context = context;
 		}
 
 		public async Task<Car> Handle(GetCarQuery request, CancellationToken cancellationToken)
 		{
-			var car = await _context.Cars.FirstOrDefaultAsync(c => c.Id == request.Id, cancellationToken);
+			var car = await context.Cars.FirstOrDefaultAsync(c => c.Id == request.Id, cancellationToken);
 			if (car == null)
 			{
 				throw new NotFoundException(nameof(car), request.Id.ToString());

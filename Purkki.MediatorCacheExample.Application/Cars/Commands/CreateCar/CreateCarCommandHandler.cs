@@ -8,11 +8,11 @@ namespace Purkki.MediatorCacheExample.Application.Cars.Commands.CreateCar
 {
 	public class CreateCarCommandHandler : IRequestHandler<CreateCarCommand, Car>
 	{
-		private readonly ExampleContext _context;
+		private readonly ExampleContext context;
 
 		public CreateCarCommandHandler(ExampleContext context)
 		{
-			_context = context;
+			this.context = context;
 		}
 
 		public async Task<Car> Handle(CreateCarCommand request, CancellationToken cancellationToken)
@@ -23,8 +23,8 @@ namespace Purkki.MediatorCacheExample.Application.Cars.Commands.CreateCar
 				Model = request.Model
 			};
 
-			_context.Cars.Add(car);
-			await _context.SaveChangesAsync(cancellationToken);
+			context.Cars.Add(car);
+			await context.SaveChangesAsync(cancellationToken);
 
 			return car;
 		}

@@ -9,24 +9,24 @@ namespace Purkki.MediatorCacheExample.Application.Infrastructure.Behaviors
 {
 	public class QueryCachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : ICacheableQuery<TResponse>
 	{
-		private readonly IMemoryCache _cache;
+		private readonly IMemoryCache cache;
 
 		public QueryCachingBehavior(IMemoryCache cache)
 		{
-			_cache = cache;
+			this.cache = cache;
 		}
 
 		public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
 		{
 			var cacheKey = typeof(TRequest).ToString() + JsonSerializer.Serialize(request);
-			var cacheResult = _cache.Get<TResponse>(cacheKey);
+			var cacheResult = cache.Get<TResponse>(cacheKey);
 			if (cacheResult != null)
 			{
 				return cacheResult;
 			}
 
 			var response = await next();
-			_cache.Set(cacheKey, response, DateTimeOffset.UtcNow.Add(request.Expiration));
+			cache.Set(cacheKey, response, DateTimeOffset.UtcNow.Add(request.Expiration));
 			return response;
 		}
 	}
