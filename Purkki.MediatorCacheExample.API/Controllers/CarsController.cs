@@ -11,15 +11,13 @@ namespace Purkki.MediatorCacheExample.API.Controllers
 {
 	public class CarsController : MediatorControllerBase
 	{
-		private const string GetCarRouteName = "GetCar";
-
 		[HttpGet]
 		public async Task<ActionResult<List<Car>>> Get()
 		{
 			return await Mediator.Send(new GetCarsQuery());
 		}
 
-		[HttpGet("{id}", Name = GetCarRouteName)]
+		[HttpGet("{id}")]
 		public async Task<ActionResult<Car>> Get(int id)
 		{
 			return await Mediator.Send(new GetCarQuery { Id = id });
@@ -28,8 +26,8 @@ namespace Purkki.MediatorCacheExample.API.Controllers
 		[HttpPost]
 		public async Task<ActionResult> Create(CreateCarCommand command)
 		{
-			var id = await Mediator.Send(command);
-			return CreatedAtRoute(GetCarRouteName, new { id }, null);
+			var car = await Mediator.Send(command);
+			return CreatedAtAction(nameof(Get), new { car.Id }, car);
 		}
 
 		[HttpDelete("{id}")]
