@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Caching.Memory;
-using Newtonsoft.Json;
 using System;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,7 +18,7 @@ namespace Purkki.MediatorCacheExample.Application.Infrastructure.Behaviors
 
 		public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
 		{
-			var cacheKey = typeof(TRequest).ToString() + JsonConvert.SerializeObject(request);
+			var cacheKey = typeof(TRequest).ToString() + JsonSerializer.Serialize(request);
 			var cacheResult = _cache.Get<TResponse>(cacheKey);
 			if (cacheResult != null)
 			{
@@ -30,4 +30,5 @@ namespace Purkki.MediatorCacheExample.Application.Infrastructure.Behaviors
 			return response;
 		}
 	}
+
 }
